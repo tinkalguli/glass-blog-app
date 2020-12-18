@@ -27,7 +27,7 @@ router.post("/register", (req, res, next) => {
     User.findOne({ email }, (err, user) => {
       if (err) return next(err);
       if(user) {
-        res.redirect("/users/register");
+        res.redirect("/users/login");
       } else {
         User.create(req.body, (err, user) => {
           if (err) return next(err);
@@ -53,7 +53,7 @@ router.post("/login", (req, res, next) => {
       }
       // add user to the session
       req.session.userId = user.id;
-      res.redirect("/users");
+      res.redirect("/articles");
     });
 });
 

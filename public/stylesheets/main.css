@@ -49,8 +49,8 @@ p {
 body {
     color: rgb(31, 30, 30);
     /* background: #00000042; */
-    background: #00000042 url("/images/bg.png") 0 0 no-repeat;
-    background-size: cover;
+    background: #00000042;
+    /* background-size: cover; */
 }
 
 .center-div {
@@ -209,7 +209,7 @@ body {
     font-size: 1.5rem;
     border-radius: 0.5rem;
     color: #fff;
-    background: rgb(31, 30, 30);
+    background: rgb(31, 30, 31);
 }
 
 .btn:hover {
@@ -232,8 +232,8 @@ body {
     background: rgb(53, 52, 52);
 }
 
-.btn-nav {
-    width: 40rem;
+.btn-nav a {
+    margin-left: 1rem;
 }
 
 .icon-btn {
