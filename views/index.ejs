@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <%- include('./include/header'); -%>
+    <section class="container flex-between">
+        <div class="hero-info">
+            <h1 class="hero-heading">
+                Welcome To
+                <span class="font-bold">Glass Blog</span>
+            </h1>
+            <a class="btn btn-big" href="/users/register">JOIN US</a>
+        </div>
+        <div class="blog-img-div">
+            <img class="blog-img" src="/images/clip.svg" alt="">
+        </div>
+    </section>
+    <%- include('./include/footer'); -%>
+</body>
+</html>

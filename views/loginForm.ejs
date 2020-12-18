@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <%- include('./include/header'); -%>
+    <main>
+        <section class="container">
+            <h1 class="heading">Login</h1>
+            <div class="oAuth-container">
+                <a class="oAuth-btn oAuth-btn-google" href="/auth/google">
+                    <img class="oAuth-icon" src="/images/icons/google.svg" alt="">
+                    <span>Sign In with Google</span>
+                </a>
+                <a class="oAuth-btn oAuth-btn-github" href="/auth/github">
+                    <img class="oAuth-icon" src="/images/icons/github.svg" alt="">
+                    <span>Sign In with Github</span>
+                </a>
+            </div>
+            <form class="form glass" action="/users/login" method="POST">
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" placeholder="Enter your email"><br>
+                <label for="password">Password</label><br>
+                <input type="password" id="password" name="password" placeholder="Enter your password"><br>
+                <div class="btn-form-wrapper">
+                    <button class="btn btn-1">Login</button>
+                </div>
+            </form>
+            <p class="extra-form-info">Don’t have an account?<a href="/users/register">Sign up</a></p>
+        </section>
+    </main>
+    <%- include('./include/footer'); -%>
+</body>
+</html>

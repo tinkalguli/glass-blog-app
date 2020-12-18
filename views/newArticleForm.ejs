@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <%- include('./include/header'); -%>
+    <main>
+        <h1 class="heading">Add Article</h1>
+        <section class="container">
+            <form action="/articles" method="POST" class="form glass">
+                <label for="title">Title</label><br>
+                <input type="text" name="title" id="title" placeholder="Enter Title"><br>
+                <label for="description">Description</label><br>
+                <textarea name="description" id="description" rows="5" placeholder="Add description"></textarea><br>
+                <label for="tags">Tags</label><br>
+                <input type="text" name="tags" id="tags" placeholder="Enter tags"><br>
+                <!-- <label for="claps">Claps</label><br>
+                <input type="number" value="0" name="claps" id="claps" placeholder="0"><br> -->
+                <div class="btn-form-wrapper">
+                    <button class="btn btn-1">Add article</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <%- include('./include/footer'); -%>
+</body>
+</html>

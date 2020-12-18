@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100&display=swap');
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.hero-heading {
+    text-align: center;
+    margin: 3rem 0;
+    font-size: 5rem;
+    font-weight: 100;
+}
+
+li {
+    list-style: none;
+}
+
+h3 {
+    font-weight: 400;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.glass {
+    background: #ffffff34;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgb(138, 138, 138);
+}
+
+body {
+    color: rgb(31, 30, 30);
+    /* background: #00000042; */
+    background: #00000042 url("/images/bg.png") 0 0 no-repeat;
+    background-size: cover;
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 67vh;
+}
+
+.card {
+    border-radius: 1rem;
+    padding: 0.8rem;
+    text-align: center;
+    margin: 1rem;
+    width: 9rem;
+    cursor: pointer;
+}
+
+.avatar-img {
+    width: 5rem;
+    margin: 0 auto 0.5rem auto;
+}
+
+.avatar-img img {
+    border-radius: 50%;
+}
+
+.comment-avatar {
+    width: 1.8rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-start {
+    align-items: flex-start;
+}
+
+.heading {
+    text-align: center;
+    padding: 2.5rem 0;
+    font-size: 2.7rem;
+    font-weight: 300;
+}
+
+.container {
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.container-small {
+    max-width: 55rem;
+}
+
+.extra-form-info {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.extra-form-info a {
+    margin-left: 0.5rem;
+}
+
+.para-1 {
+    white-space: pre-line;
+    text-align: justify;
+    margin: 1rem 0 2rem 0;
+    line-height: 1.5;
+    font-size: 1.5rem;
+}
+
+.claps {
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+}
+
+.clap-icon img {
+    width: 2rem;
+}
+
+.claps span {
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0.5rem 0.5rem 0;
+}
+
+.article-nav {
+    width: 6rem;
+    margin-left: 1rem;
+}
+
+.hero-info {
+    width: 45%;
+    text-align: center;
+}
+
+.profile-card {
+    width: 20rem;
+    padding: 1.5rem;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 1rem;
+}
+
+.profile-avatar {
+    width: 15rem;
+    margin: 0 auto 0.5rem auto;
+}
+
+.profile-avatar img {
+    border-radius: 50%;
+}
+
+.blog-img {
+    border-radius: 2rem;
+    width: 100%;
+}
+
+.blog-img-div {
+    width: 55%;
+}
+
+.btn {
+    padding: 0.5rem 1.2rem;
+    text-decoration: none;
+    background: #ffffff34;
+    backdrop-filter: blur(3px);
+    border: 0;
+    border: 1px solid rgb(138, 138, 138);
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0.5rem 0;
+    color: black;
+}
+
+.btn-big {
+    padding: 0.8rem 1.7rem;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    background: rgb(31, 30, 30);
+}
+
+.btn:hover {
+    background: transparent;
+    backdrop-filter: blur(5px);
+}
+
+.btn-big:hover {
+    background: rgb(41, 40, 40);
+}
+
+.active {
+    background: rgb(31, 30, 30);
+    color: #fff;
+}
+
+.active:hover,
+.active:active,
+.logout-btn:active {
+    background: rgb(53, 52, 52);
+}
+
+.btn-nav {
+    width: 40rem;
+}
+
+.icon-btn {
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: 0.5rem;
+}
+
+.oAuth-btn {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: block;
+    border-radius: 1rem;
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.oAuth-btn-github {
+    color: #fff;
+    background: rgb(31, 30, 30);
+}
+
+.oAuth-btn-google {
+    color: rgb(31, 30, 30);
+    background:#fff;
+}
+
+.oAuth-btn span {
+    vertical-align: middle;
+}
+
+.oAuth-icon {
+    width: 2.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.oAuth-container {
+    max-width: 30rem;
+    margin: 0 auto;
+}
+
+.logo {
+    color: rgb(17, 1, 1);
+}
+
+.para {
+    text-align: justify;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+.no-comment {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1.5rem;
+}
+
+.form {
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 1.5rem 2.5rem;
+    border-radius: 1rem;
+    color: black;
+}
+
+.comments {
+    border-radius: 0.5rem;
+}
+
+.comment {
+    border-bottom: 1px solid #8a8a8a;
+    list-style: none;
+    padding: 1.5rem;
+}
+
+.comments h6 {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.comment:last-child {
+    border: none;
+}
+
+.comment-form {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.comment-btns {
+    width: 4.3rem;
+}
+
+.comment-edit-btn,
+.comment-trash-btn {
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 0.35rem;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.comment-edit-btn:hover,
+.comment-trash-btn:hover {
+    background: transparent;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+.form input,
+.form textarea {
+    width: 100%;
+    font-size: 1.2rem;
+    margin: 0.5rem 0 1rem 0;
+    padding: 0.4rem 0.5rem;
+    border-radius: 0.3rem;
+    background: transparent;
+    backdrop-filter: blur(3px);
+    border: 0;
+    border: 1px solid rgb(138, 138, 138);
+}
+
+.margin-auto {
+    margin: 2rem auto 0 auto;
+}
+
+.form label {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.btn-form-wrapper {
+    text-align: center;
+    margin-top: 0.1rem;
+}
+
+.article-avatar-img {
+    width: 3rem;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 0.7rem;
+}
+
+.btn-1 {
+    font-size: 1.3rem;
+    line-height: 1;
+    padding: 0.7rem 1.2rem;
+}
+
+.article-title {
+    font-size: 1.3rem;
+    padding: 1rem 1.5rem;
+    /* background: #222224; */
+    margin:0 auto 2rem auto;
+    border-radius: 1rem;
+    text-decoration: none;
+    display: block;
+    color: black;
+    max-width: max-content;
+}
+
+.header {
+    padding: 1rem 0;
+    box-shadow: 5px 5px 5px #4d4d4d8e;
+}
+
+.footer {
+    padding: 2.5rem 0;
+    box-shadow: -5px -5px 5px #4d4d4d8e;
+    text-align: center;
+    margin-top: 3.5rem;
+}
+
+.no-artcle {
+    text-align: center;
+    height: 55vh;
+    margin: 3rem 0 5rem 0;
+}
+
+.no-artcle h3 {
+    font-size: 4rem;
+    margin: 3rem 0;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <%- include('./include/header'); -%>
+    <main>
+        <section class="container container-small">
+            <h1 class="heading">All users</h1>
+            <div class="flex">
+                <% if (users.length) { %>
+                    <% users.forEach(user => { %>
+                        <a class="card glass">
+                            <div class="avatar-img">
+                                <img src="/images/avatar.svg" alt="avatar">
+                            </div>
+                            <h5><%= user.name %></h5>
+                        </a>
+                    <% }) %>
+                <% } else { %>
+                    <h2>No User</h2>
+                <% } %>
+            </div>
+        </section>
+    </main>
+    <%- include('./include/footer'); -%>
+</body>
+</html>

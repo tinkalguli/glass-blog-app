@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <%- include('./include/header'); -%>
+    <main>
+        <section class="container container-small">
+            <h1 class="heading"><%= article.title %></h1>
+            <div class="flex-between">
+                <h4><img class="article-avatar-img" src="/images/avatar.svg" alt="avatar"><%= article.author.name%></h4>
+                <% if (user  && article.author.id == user.id) { %>
+                    <nav class="article-nav flex-between">
+                        <a class="btn icon-btn" href="/articles/<%= article.id %>/update">
+                            <img src="/images/icons/pencil.svg" alt="pencil icon">
+                        </a>
+                        <a class="btn icon-btn" href="/articles/<%= article.id %>/delete">
+                            <img src="/images/icons/trash.svg" alt="trash icon">
+                        </a>
+                    </nav>
+                <% } %>
+            </div>
+            <pre class="para-1"><%= article.description %></pre>
+            <div class="claps">
+                <span><%= article.claps %></span>
+                <a class="clap-icon" href="/articles/<%= article.id%>/claps">
+                    <img src="/images/icons/clapping.svg" alt="">
+                </a>
+            </div>
+            <form class="form comment-form glass" action="/articles/<%= article.id %>/comments" method="POST">
+                <label for="text">Comment</label><br>
+                <textarea name="text" id="text" rows="5"></textarea><br>
+                <div class="btn-form-wrapper">
+                    <button class="btn btn-1">Add comment</button>
+                </div>
+            </form>
+        </section>
+        <section class="container container-small">
+            <ul class="comments glass">
+                <% if (article.comments.length) { %>
+                    <% article.comments.forEach(comment => { %>
+                        <li class="comment">
+                            <div class="flex-between">
+                                <h6>
+                                    <img class="comment-avatar" src="/images/avatar.svg" alt="avatar">
+                                    <%= comment.author.name %>
+                                </h6>
+                                <ul class="flex-between comment-btns">
+                                    <% if (user && comment.author.id === user.id) { %>
+                                        <li>
+                                            <a class="comment-edit-btn glass" href="/articles/<%= article.id%>/comments/<%= comment.id%>/edit">
+                                                <img src="/images/icons/pencil.svg" alt="pencil icon">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="comment-trash-btn glass" href="/articles/<%= article.id%>/comments/<%= comment.id%>/delete">
+                                                <img src="/images/icons/trash.svg" alt="trash icon">
+                                            </a>
+                                        </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                            <p><%= comment.text %></p>
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <h3 class="no-comment">No comments</h3>
+                <% } %>
+            </ul>
+        </section>
+    </main>
+    <%- include('./include/footer'); -%>
+</body>
+</html>

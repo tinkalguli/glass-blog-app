@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <%- include('./include/header'); -%>
+    <main>
+        <section class="container">
+            <% if (articles.length) { %>
+                <h1 class="heading">All Articles</h1>
+                <% articles.forEach( article => { %>
+                    <a class="article-title glass" href="/articles/<%= article.id %>">
+                        <h3><%= article.title %></h3>
+                    </a>
+                <% }) %>
+            <% } else { %>
+                <div class="no-artcle">
+                    <h2 class="heading">No Articles</h2>
+                    <h3>Add a new artcle</h3>
+                    <a class="btn btn-1" href="/articles/new">Add Article</a>
+                </div>
+            <% } %>
+        </section>
+    </main>
+    <%- include('./include/footer'); -%>
+</body>
+</html>

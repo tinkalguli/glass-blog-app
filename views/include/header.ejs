@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container flex-between">
+            <h2>
+                <a class="logo" href="/">LOGO</a>
+            </h2>
+            <nav class="flex-between btn-nav">
+                <% if(url == "/") { %>
+                    <a class="btn active" href="/">Home</a>
+                <% } else { %>
+                    <a class="btn" href="/">Home</a>
+                <% } %>
+                <% if (url == "/articles/new") { %>
+                    <a class="btn active" href="/articles/new">Add Article</a>
+                <% } else { %>
+                    <a class="btn" href="/articles/new">Add Article</a>
+                <% } %>
+                <% if (url == "/articles") { %>
+                    <a class="btn active" href="/articles">Articles</a>
+                <% } else { %>
+                    <a class="btn" href="/articles">Articles</a>
+                <% } %>
+                <% if (url == "/users") { %>
+                    <a class="btn active" href="/users">Users</a>
+                <% } else { %>
+                    <a class="btn" href="/users">Users</a>
+                <% } %>
+                
+                <% if (user) { %>
+                    <% if (url == `/users/${user.id}`) { %>
+                        <a class="btn active" href="/users/<%= user.id%>">Profile</a>
+                    <% } else { %>
+                        <a class="btn" href="/users/<%= user.id%>">Profile</a>
+                    <% } %>
+                    <a class="btn logout-btn" href="/users/logout">Log out</a>
+                <% } else { %>
+                    <% if (url == "/users/login") { %>
+                        <a class="btn active" href="/users/login">Login</a>
+                    <% } else { %>
+                        <a class="btn" href="/users/login">Login</a>
+                    <% } %>
+                    <% if (url == "/users/register") { %>
+                        <a class="btn active" href="/users/register">Join Us</a>
+                    <% } else { %>
+                        <a class="btn" href="/users/register">Join Us</a>
+                    <% } %>
+                <% } %>
+            </nav>
+        </div>
+    </header>
+</body>
+</html>
