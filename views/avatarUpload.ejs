@@ -10,13 +10,14 @@
     <%- include('./include/header'); -%>
     <main>
         <section class="container">
-            <h1 class="heading">Profile</h1>
-            <div class="profile-card glass">
-                <div class="profile-avatar">
-                    <img src="/images/avatar.svg" alt="avatar">
+            <h1 class="heading">Upload Avatar</h1>
+            <form class="form glass" action="" method="POST" enctype="multipart/form-data">
+                <label for="avatar">Avatar</label><br>
+                <input type="file" name="avatar" accept="image/*"><br>
+                <div class="btn-form-wrapper">
+                    <button class="btn btn-1">Upload</button>
                 </div>
-                <h2><%= userInfo.name%></h2>
-            </div>
+            </form>
         </section>
     </main>
     <%- include('./include/footer'); -%>

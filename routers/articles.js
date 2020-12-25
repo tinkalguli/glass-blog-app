@@ -22,7 +22,7 @@ router.post("/", auth.verifyLoggedInUser, (req, res, next) => {
 
 // all articles
 router.get("/", (req, res, next) => {
-    Article.find({}, (err,articles) => {
+    Article.find({}).sort({ updatedAt : "descending" }).exec((err, articles) => {
         if (err) return next(err);
         res.render("articles", { articles });
     });
@@ -51,7 +51,7 @@ router.get("/:id/update", auth.verifyLoggedInUser, (req, res, next) => {
 });
 
 // update article
-router.post("/:id", (req, res, next) => {
+router.post("/:id", auth.verifyLoggedInUser, (req, res, next) => {
     Article.findByIdAndUpdate(req.params.id, req.body, { new : true }, (err, updatedArticle) => {
         if (err) return next(err);
         res.redirect(`/articles/${req.params.id}`);
@@ -67,11 +67,22 @@ router.get("/:id/delete", (req, res, next) => {
 });
 
 // Add likes
-router.get("/:id/claps", (req, res, next) => {
-    let id = req.params.id;
-    Article.findByIdAndUpdate(id, { $inc : { claps : 1 } }, (err, updatedArticle) => {
+router.get("/:id/claps", auth.verifyLoggedInUser, (req, res, next) => {
+    let userId = req.user.id;
+    let articleId = req.params.id;
+    Article.findById(articleId, (err, article) => {
         if (err) return next(err);
-        res.redirect("/articles/" + id);
+        if (article.claps.includes(userId)) {
+            Article.findByIdAndUpdate(articleId, { $pull : { claps : userId } }, (err, updatedArticle) => {
+                if (err) return next(err);
+                res.redirect("/articles/" + articleId);
+            });
+        } else {
+            Article.findByIdAndUpdate(articleId, { $push : { claps : userId } }, (err, updatedArticle) => {
+                if (err) return next(err);
+                res.redirect("/articles/" + articleId);
+            });
+        }
     });
 });
 
@@ -100,7 +111,7 @@ router.get("/:articleId/comments/:commentId/edit", auth.verifyLoggedInUser, (req
 });
 
 // Update comment
-router.post("/:articleId/comments/:commentId/edit", (req, res, next) => {
+router.post("/:articleId/comments/:commentId/edit", auth.verifyLoggedInUser, (req, res, next) => {
     let commentId = req.params.commentId;
     let articleId = req.params.articleId;
     Comment.findByIdAndUpdate(commentId, req.body, (err, UpdatedComment) => {

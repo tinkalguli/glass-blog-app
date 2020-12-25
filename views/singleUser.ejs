@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass blog</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <%- include('./include/header'); -%>
+    <main>
+        <section class="container">
+            <h1 class="heading">Profile</h1>
+            <div class="profile-card glass">
+                <div class="profile-avatar">
+                    <% if (userInfo.avatar) { %>
+                        <img src="<%= userInfo.avatar%>" alt="avatar">
+                    <% } else { %>
+                        <img src="/images/avatar.svg" alt="avatar">
+                    <% } %>
+                </div>
+                <h2><%= userInfo.name%></h2>
+            </div>
+        </section>
+        <section class="container">
+            <div class="glass user-articles">
+                <% if (articles.length) { %>
+                    <h1 class="heading">Articles</h1>
+                    <% articles.forEach( article => { %>
+                        <a class="article-title glass" href="/articles/<%= article.id %>">
+                            <h3><%= article.title %></h3>
+                        </a>
+                    <% }) %>
+                <% } else { %>
+                    <div class="no-artcle">
+                        <h2 class="heading">No Articles</h2>
+                        <h3>Add a new artcle</h3>
+                        <a class="btn btn-1" href="/articles/new">Add Article</a>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
+    <%- include('./include/footer'); -%>
+</body>
+</html>

@@ -11,15 +11,13 @@
     <main>
         <section class="container">
             <h1 class="heading">Update Article</h1>
-            <form class="form glass" action="/articles/<%= article.id %>" method="POST">
+            <form class="form glass" action="/articles/<%= article.id %>" method="POST" enctype="multipart/form-data">
                 <label for="title">Title</label><br>
                 <input type="text" name="title" id="title" value="<%= article.title %>" placeholder="Enter Title"><br>
                 <label for="description">Description</label><br>
                 <textarea name="description" id="description" rows="5" placeholder="Add description"><%= article.description %></textarea><br>
                 <label for="tags">Tags</label><br>
                 <input type="text" name="tags" id="tags" value="<%= article.tags %>" placeholder="Enter tags"><br>
-                <!-- <label for="claps">Claps</label><br>
-                <input type="number" name="claps" value="<%= article.claps %>" id="claps" placeholder="0"><br> -->
                 <div class="btn-form-wrapper">
                     <button class="btn btn-1">Add article</button>
                 </div>

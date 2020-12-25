@@ -12,6 +12,7 @@
             <h2>
                 <a class="logo" href="/">LOGO</a>
             </h2>
+            <input type="checkbox" name="" id="hamburger">
             <nav class="btn-nav">
                 <% if(url == "/") { %>
                     <a class="btn active" href="/">Home</a>
@@ -56,6 +57,11 @@
                     <% } %>
                 <% } %>
             </nav>
+            <label for="hamburger" class="hamburger-btn">
+                <span class="hamburger-bar hamburger-bar-1"></span>
+                <span class="hamburger-bar hamburger-bar-2"></span>
+                <span class="hamburger-bar hamburger-bar-3"></span>
+            </label>
         </div>
     </header>
 </body>

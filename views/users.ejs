@@ -14,9 +14,13 @@
             <div class="flex">
                 <% if (users.length) { %>
                     <% users.forEach(user => { %>
-                        <a class="card glass">
+                        <a class="card glass" href="/users/<%= user.id %>">
                             <div class="avatar-img">
-                                <img src="/images/avatar.svg" alt="avatar">
+                                <% if (user.avatar) { %>
+                                    <img src="<%= user.avatar%>" alt="avatar">
+                                <% } else { %>
+                                    <img src="/images/avatar.svg" alt="avatar">
+                                <% } %>
                             </div>
                             <h5><%= user.name %></h5>
                         </a>

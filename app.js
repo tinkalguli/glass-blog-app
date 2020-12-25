@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var MongoStore = require("connect-mongo")(session);
 var auth = require("./middlewares/auth");
 var passport =require("passport");
+var { cloudinaryConfig } = require('./config/cloudinary');
 
 require("dotenv").config();
 
@@ -27,6 +28,7 @@ var port = normalizePort(process.env.PORT || '3030');
 
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
+app.use('*', cloudinaryConfig);
 
 app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());

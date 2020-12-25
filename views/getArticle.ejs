@@ -12,7 +12,14 @@
         <section class="container container-small">
             <h1 class="heading"><%= article.title %></h1>
             <div class="flex-between">
-                <h4><img class="article-avatar-img" src="/images/avatar.svg" alt="avatar"><%= article.author.name%></h4>
+                <h4>
+                    <% if(article.author.avatar) { %>
+                        <img class="article-avatar-img" src="<%= article.author.avatar %>" alt="avatar">
+                    <% } else { %>
+                        <img class="article-avatar-img" src="/images/avatar.svg" alt="avatar">
+                    <% } %>
+                    <span><%= article.author.name%></span>
+                </h4>
                 <% if (user  && article.author.id == user.id) { %>
                     <nav class="article-nav flex-between">
                         <a class="btn icon-btn" href="/articles/<%= article.id %>/update">
@@ -26,18 +33,24 @@
             </div>
             <pre class="para-1"><%= article.description %></pre>
             <div class="claps">
-                <span><%= article.claps %></span>
+                <span><%= article.claps.length %></span>
                 <a class="clap-icon" href="/articles/<%= article.id%>/claps">
-                    <img src="/images/icons/clapping.svg" alt="">
+                    <% if (user && article.claps.includes(user.id)) { %>
+                        <img src="/images/icons/clapping-black.svg" alt="">
+                    <% } else { %>
+                        <img src="/images/icons/clapping.svg" alt="">
+                    <% } %>
                 </a>
             </div>
-            <form class="form comment-form glass" action="/articles/<%= article.id %>/comments" method="POST">
-                <label for="text">Comment</label><br>
-                <textarea name="text" id="text" rows="5"></textarea><br>
-                <div class="btn-form-wrapper">
-                    <button class="btn btn-1">Add comment</button>
-                </div>
-            </form>
+            <% if (user) { %>
+                <form class="form comment-form glass" action="/articles/<%= article.id %>/comments" method="POST">
+                    <label for="text">Comment</label><br>
+                    <textarea name="text" id="text" rows="5"></textarea><br>
+                    <div class="btn-form-wrapper">
+                        <button class="btn btn-1">Add comment</button>
+                    </div>
+                </form>
+            <% } %>
         </section>
         <section class="container container-small">
             <ul class="comments glass">
@@ -46,8 +59,12 @@
                         <li class="comment">
                             <div class="flex-between">
                                 <h6>
-                                    <img class="comment-avatar" src="/images/avatar.svg" alt="avatar">
-                                    <%= comment.author.name %>
+                                    <% if(comment.author.avatar) { %>
+                                        <img class="comment-avatar" src="<%= comment.author.avatar%>" alt="avatar">
+                                    <% } else { %>
+                                        <img class="comment-avatar" src="/images/avatar.svg" alt="avatar">
+                                    <% } %>
+                                    <span><%= comment.author.name %></span>
                                 </h6>
                                 <ul class="flex-between comment-btns">
                                     <% if (user && comment.author.id === user.id) { %>

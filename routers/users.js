@@ -1,11 +1,18 @@
 var express = require('express');
 var router = express.Router();
-
+var multer = require("multer");
+var { multerUploads } = require("../middlewares/multer");
 var User = require("../models/user");
+var Article = require("../models/article");
+var { resolve } =  require('path');
+var { uploader, cloudinaryConfig } = require('../config/cloudinary');
+var { multerUploads, dataUri } = require('../middlewares/multer');
+var auth = require("../middlewares/auth");
 
 // get all users
 router.get("/", (req, res, next) => {
-    User.find({}, (err, users) => {
+ 
+    User.find({}).sort({updatedAt : 'descending'}).exec((err, users) => {
       if (err) return next(err);
       res.render("users", { users });
     });
@@ -31,10 +38,49 @@ router.post("/register", (req, res, next) => {
       } else {
         User.create(req.body, (err, user) => {
           if (err) return next(err);
-          res.redirect("/users/login");
+          req.session.userId = user.id;
+          res.redirect("/users/avatar");
         });
       }
     });
+});
+
+
+// get Avatar form
+
+router.get("/avatar", auth.verifyLoggedInUser, (req, res) => {
+  res.render("avatarUpload", );
+});
+
+// post avatar
+/*
+var storage = multer.diskStorage({
+  destination : function(req, file, cb) {
+    cb(null, "upload/");
+  },
+  filename : function(req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  }
+});
+
+var upload = multer({ storage : storage }); */
+
+router.post("/avatar", auth.verifyLoggedInUser, multerUploads, (req, res, next) => {
+  if(req.file) {
+    var file = dataUri(req).content;
+
+    return uploader.upload(file).then((result) => {
+      var avatar = result.url;
+      User.findByIdAndUpdate(req.user.id, { avatar }, (err, updatedUser) => {
+        if (err) return next(err);
+        res.redirect("/articles");
+      });
+    }).catch( (err) => {
+      return next(err);
+    });
+  } else {
+    res.redirect("/avatar");
+  }
 });
 
 // User Login
@@ -66,9 +112,13 @@ router.get("/logout", (req, res) => {
 
 // get one user
 router.get("/:id", (req, res, next) => {
-  User.findById(req.params.id, (err, userInfo) => {
+  let id = req.params.id;
+  User.findById(id, (err, userInfo) => {
     if (err) return next(err);
-    res.render("userProfile", { userInfo });
+    Article.find({ author : id }, (err, articles) => {
+      if(err) return next(err);
+      res.render("singleUser", { articles, userInfo });
+    });
   });
 });
 
