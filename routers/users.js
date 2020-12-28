@@ -8,6 +8,7 @@ var { resolve } =  require('path');
 var { uploader, cloudinaryConfig } = require('../config/cloudinary');
 var { multerUploads, dataUri } = require('../middlewares/multer');
 var auth = require("../middlewares/auth");
+var cloudinary = require("cloudinary")
 
 // get all users
 router.get("/", (req, res, next) => {
@@ -66,20 +67,23 @@ var storage = multer.diskStorage({
 var upload = multer({ storage : storage }); */
 
 router.post("/avatar", auth.verifyLoggedInUser, multerUploads, (req, res, next) => {
+  console.log(req.file)
   if(req.file) {
     var file = dataUri(req).content;
-
     return uploader.upload(file).then((result) => {
-      var avatar = result.url;
+      var avatar = result.url.slice(0, result.url.indexOf("/upload") + 8)
+                    + "w_300,h_300,c_fill,g_face"
+                    + result.url.slice(result.url.indexOf("/upload") + 7, result.url.length);
+      
       User.findByIdAndUpdate(req.user.id, { avatar }, (err, updatedUser) => {
         if (err) return next(err);
-        res.redirect("/articles");
+        res.render("avatarUpload", { updatedUser });
       });
     }).catch( (err) => {
       return next(err);
     });
   } else {
-    res.redirect("/avatar");
+    res.redirect("/users/avatar");
   }
 });
 

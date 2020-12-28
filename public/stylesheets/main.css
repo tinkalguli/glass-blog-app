@@ -53,11 +53,86 @@ body {
     /* background-size: cover; */
 }
 
+.label-extra-info {
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.tag {
+    background-color: rgb(31, 30, 30);
+    color: #fff;
+    padding: 0.25rem 0.5rem 0.25rem 1.4rem;
+    border-radius: 15px 3px 3px 15px;
+    margin-left: 0.5rem;
+    display: inline-block;
+    position: relative;
+}
+
+.image-input {
+    display: none;
+}
+
+.profile-avatar-edit {
+    position: relative;
+}
+
+.camera-btn {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 70%;
+    right: 0.5rem;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.camera-btn img {
+    width: 1.7rem;
+}
+
+.tag::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 38%;
+    left: 7px;
+    border: 2px solid rgb(145, 145, 145);
+}
+
+.tag:first-child {
+    margin-left: 0;
+}
+
+.tag-date-sec {
+    margin-bottom: 1.5rem;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comment-text {
+    margin-top: 0.5rem;
+}
+
+.author-name {
+    color: rgb(31, 30, 30);
+    font-weight: 700;
+}
+
 .center-div {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 67vh;
 }
 
 .card {
@@ -118,6 +193,10 @@ body {
 
 .container-small {
     max-width: 55rem;
+}
+
+.min-height {
+    min-height: 70vh;
 }
 
 .user-articles {
@@ -184,8 +263,9 @@ body {
     margin: 0 auto 0.5rem auto;
 }
 
-.profile-avatar img {
+.profile-avatar-img {
     border-radius: 50%;
+    border: 1px solid #8a8a8a;
 }
 
 .blog-img {
@@ -244,10 +324,20 @@ body {
     margin-left: 1rem;
 }
 
+.skip-btn-wrapper {
+    max-width: 30rem;
+    text-align: right;
+    margin: 1rem auto 0 auto;
+}
+
 .icon-btn {
     width: 2.3rem;
     height: 2.3rem;
     padding: 0.5rem;
+}
+
+.margin-left {
+    margin-left: 0.4rem;
 }
 
 .oAuth-btn {
@@ -443,11 +533,15 @@ body {
     .order-1 {
         order: 1;
         width: 100%;
-        height: 70vh;
     }
 
     .blog-img-div {
         display: none;
+    }
+
+    .hero-info {
+        max-width: 40rem;
+        margin: 0 auto;
     }
 }
 
@@ -482,13 +576,31 @@ body {
         display: block;
         position: absolute;
         top: 1rem;
-        right: 2rem;
+        right: 1.5rem;
         z-index: 99999;
     }
 
     #hamburger:checked ~ .btn-nav {
         display: block;
         left: calc(100% - 15rem);
+    }
+
+    #hamburger:checked ~ .hamburger-btn > .hamburger-bar {
+        position: absolute;
+        right: 0;
+        top: 0.5rem;
+    }
+
+    #hamburger:checked ~ .hamburger-btn > .hamburger-bar-1 {
+        transform: rotate(135deg);
+    }
+
+    #hamburger:checked ~ .hamburger-btn > .hamburger-bar-2 {
+        display: none;
+    }
+
+    #hamburger:checked ~ .hamburger-btn > .hamburger-bar-3 {
+        transform: rotate(45deg);
     }
 
     .hamburger-bar {

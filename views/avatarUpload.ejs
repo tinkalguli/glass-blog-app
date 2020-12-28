@@ -11,13 +11,26 @@
     <main>
         <section class="container">
             <h1 class="heading">Upload Avatar</h1>
-            <form class="form glass" action="" method="POST" enctype="multipart/form-data">
-                <label for="avatar">Avatar</label><br>
-                <input type="file" name="avatar" accept="image/*"><br>
+            <form class="form glass" action="/users/avatar" method="POST" enctype="multipart/form-data">
+                <div class="profile-avatar profile-avatar-edit">
+                    <% if (user.avatar) { %>
+                        <img class="profile-avatar-img" src="<%= user.avatar%>" alt="">
+                    <% } else { %>
+                        <img class="profile-avatar-img" src="/images/avatar.svg" alt="">
+                    <% } %>
+                    <label for="avatar" class="camera-btn">
+                        <img src="/images/icons/camera.svg" alt="camera icon">
+                    </label>
+                </div>
+                <input class="image-input" type="file" name="avatar" accept="image/*" id="avatar"><br>
                 <div class="btn-form-wrapper">
-                    <button class="btn btn-1">Upload</button>
+                    <button class="btn btn-1 active">Save</button>
                 </div>
             </form>
+            <div class="skip-btn-wrapper">
+                <a href="/articles" class="btn btn-1">Skip</a>
+                <a href="/articles" class="btn btn-1 active margin-left">Next</a>
+            </div>
         </section>
     </main>
     <%- include('./include/footer'); -%>

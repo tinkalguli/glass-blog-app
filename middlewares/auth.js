@@ -11,7 +11,7 @@ module.exports = {
     currentLoggedUserInfo : (req, res, next) => {
         if (req.session && req.session.userId) {
             var userId = req.session.userId;
-            User.findById(userId, { name : 1, email : 1}, (err, user) => {
+            User.findById(userId, { name : 1, email : 1, avatar : 1 }, (err, user) => {
                 req.user  = user;
                 res.locals.user = user;
                 next();

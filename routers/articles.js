@@ -13,6 +13,8 @@ router.get("/new", auth.verifyLoggedInUser, (req, res, next) => {
 
 // create article
 router.post("/", auth.verifyLoggedInUser, (req, res, next) => {
+    var tags = req.body.tags ? req.body.tags.split(",").map(tag => tag.trim()) : [];
+    req.body.tags = tags;
     req.body.author = req.session.userId;
     Article.create(req.body, (err, articleCreated) => {
         if (err) return next(err);
@@ -52,6 +54,8 @@ router.get("/:id/update", auth.verifyLoggedInUser, (req, res, next) => {
 
 // update article
 router.post("/:id", auth.verifyLoggedInUser, (req, res, next) => {
+    var tags = req.body.tags ? req.body.tags.split(",").map(tag => tag.trim()) : [];
+    req.body.tags = tags;
     Article.findByIdAndUpdate(req.params.id, req.body, { new : true }, (err, updatedArticle) => {
         if (err) return next(err);
         res.redirect(`/articles/${req.params.id}`);
