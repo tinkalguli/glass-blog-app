@@ -12,13 +12,24 @@
         <section class="container">
             <h1 class="heading">Profile</h1>
             <div class="profile-card glass">
-                <div class="profile-avatar">
-                    <% if (userInfo.avatar) { %>
-                        <img class="profile-avatar-img" src="<%= userInfo.avatar%>" alt="avatar">
-                    <% } else { %>
-                        <img class="profile-avatar-img" src="/images/avatar.svg" alt="avatar">
-                    <% } %>
-                </div>
+                <% if (user.id === userInfo.id) { %>
+                    <div class="profile-avatar profile-avatar-hover">
+                        <a class="btn profile-avatar-hover-btn" href="/users/avatar/edit">Edit</a>
+                        <% if (userInfo.avatar) { %>
+                            <img class="profile-avatar-img" src="<%= userInfo.avatar%>" alt="avatar">
+                        <% } else { %>
+                            <img class="profile-avatar-img" src="/images/avatar.svg" alt="avatar">
+                        <% } %>
+                    </div>
+                <% } else { %>
+                    <div class="profile-avatar">
+                        <% if (userInfo.avatar) { %>
+                            <img class="profile-avatar-img" src="<%= userInfo.avatar%>" alt="avatar">
+                        <% } else { %>
+                            <img class="profile-avatar-img" src="/images/avatar.svg" alt="avatar">
+                        <% } %>
+                    </div>
+                <% } %>
                 <h2><%= userInfo.name%></h2>
             </div>
         </section>

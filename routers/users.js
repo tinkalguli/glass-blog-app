@@ -50,22 +50,10 @@ router.post("/register", (req, res, next) => {
 // get Avatar form
 
 router.get("/avatar", auth.verifyLoggedInUser, (req, res) => {
-  res.render("avatarUpload", );
+  res.render("avatarUpload");
 });
 
 // post avatar
-/*
-var storage = multer.diskStorage({
-  destination : function(req, file, cb) {
-    cb(null, "upload/");
-  },
-  filename : function(req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  }
-});
-
-var upload = multer({ storage : storage }); */
-
 router.post("/avatar", auth.verifyLoggedInUser, multerUploads, (req, res, next) => {
   console.log(req.file)
   if(req.file) {
@@ -77,13 +65,40 @@ router.post("/avatar", auth.verifyLoggedInUser, multerUploads, (req, res, next) 
       
       User.findByIdAndUpdate(req.user.id, { avatar }, (err, updatedUser) => {
         if (err) return next(err);
-        res.render("avatarUpload", { updatedUser });
+        res.redirect("/users/avatar");
       });
     }).catch( (err) => {
       return next(err);
     });
   } else {
     res.redirect("/users/avatar");
+  }
+});
+
+// get avatar update form
+router.get("/avatar/edit", auth.verifyLoggedInUser, (req, res) => {
+  res.render("avatarUpdate");
+});
+
+// update avatar
+router.post("/avatar/edit", auth.verifyLoggedInUser, multerUploads, (req, res, next) => {
+  console.log(req.file)
+  if(req.file) {
+    var file = dataUri(req).content;
+    return uploader.upload(file).then((result) => {
+      var avatar = result.url.slice(0, result.url.indexOf("/upload") + 8)
+                    + "w_300,h_300,c_fill,g_face"
+                    + result.url.slice(result.url.indexOf("/upload") + 7, result.url.length);
+      
+      User.findByIdAndUpdate(req.user.id, { avatar }, (err, updatedUser) => {
+        if (err) return next(err);
+        res.redirect("/users/avatar/edit");
+      });
+    }).catch( (err) => {
+      return next(err);
+    });
+  } else {
+    res.redirect("/users/avatar/edit");
   }
 });
 

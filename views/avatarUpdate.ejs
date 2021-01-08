@@ -10,8 +10,8 @@
     <%- include('./include/header'); -%>
     <main>
         <section class="container">
-            <h1 class="heading">Upload Avatar</h1>
-            <form class="form glass" action="/users/avatar" method="POST" enctype="multipart/form-data">
+            <h1 class="heading">Update Avatar</h1>
+            <form class="form glass" action="/users/avatar/edit" method="POST" enctype="multipart/form-data">
                 <div class="profile-avatar profile-avatar-edit">
                     <% if (user.avatar) { %>
                         <img class="profile-avatar-img" src="<%= user.avatar%>" alt="">
@@ -28,11 +28,7 @@
                 </div>
             </form>
             <div class="skip-btn-wrapper">
-                <% if (user.avatar) { %>
-                    <a href="/articles" class="btn btn-1 active">Next</a>
-                <% } else { %>
-                    <a href="/articles" class="btn btn-1">Skip</a>
-                <% } %>
+                <a href="/users/<%= user.id %>" class="btn btn-1 active">Ok</a>
             </div>
         </section>
     </main>
